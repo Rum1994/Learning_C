@@ -3,7 +3,7 @@
 
 int getline(char line[], int maxline);
 void copy(char to[], char from[]);
-
+void reverse( char input [], int length);
 /* print longest input line */
 int main()
 {
@@ -14,11 +14,12 @@ int main()
 
    
     while ((len = getline(line, MAXLINE)) > 0){
-    printf("Current line: %d\n", len);
-        if (len > 20) {
-             printf("inside if");
-            copy(longest, line);
-             printf("This line is over 20: %s\n", line);
+  
+        if (len > 0) {
+        
+                copy(longest, line);
+                reverse(line,len);
+              printf("%s", line);
 
         }
     
@@ -42,6 +43,20 @@ int getline(char s[], int lim)
 
     s[i] = '\0';
     return i;
+}
+
+void reverse(char inp [], int length){
+   int i,j;
+   char temp;
+    
+     if (inp[length-1] == '\n') {
+        length--;  // ignore newline for reversal
+    }
+     for (i = 0, j = length-1; i < j; i++, j--) {
+        temp = inp[i];
+        inp[i] = inp[j];
+        inp[j] = temp;
+    }
 }
 
 /* copy:  copy ′from′ into ′to′; assume to is big enough */
